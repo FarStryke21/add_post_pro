@@ -18,7 +18,14 @@ find_package(catkin REQUIRED COMPONENTS
     rospy
     depth_image_proc
     tf2
+    pcl_conversions
+    pcl_ros
 )
+
+find_package(PCL 1.8 REQUIRED)
+include_directories(${PCL_INCLUDE_DIRS})
+link_directories(${PCL_LIBRARY_DIRS})
+add_definitions(${PCL_DEFINITIONS})
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -109,24 +116,14 @@ find_package(catkin REQUIRED COMPONENTS
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
-catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES laser_scanner_pkg
-#  CATKIN_DEPENDS other_catkin_pkg
-#  DEPENDS system_lib
-)
+catkin_package()
 
-###########
-## Build ##
-###########
 
-## Specify additional locations of header files
-## Your package locations should be listed before other locations
+include_directories(include ${catkin_INCLUDE_DIRS})
 include_directories(
 # include
-# ${catkin_INCLUDE_DIRS}
+  ${catkin_INCLUDE_DIRS}
 )
-
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/laser_scanner_pkg.cpp
@@ -211,3 +208,10 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+add_executable(signal_transformer src/signal_transformer.cpp)
+add_dependencies(signal_transformer ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(signal_transformer  ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+
+add_executable(aggregate_laser_scans src/aggregate_laser_scans.cpp)
+add_dependencies(aggregate_laser_scans ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(aggregate_laser_scans  ${catkin_LIBRARIES} ${PCL_LIBRARIES})

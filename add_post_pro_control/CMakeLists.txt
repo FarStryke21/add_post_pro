@@ -12,6 +12,8 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
   message_runtime
   moveit_core
+  moveit_ros_planning_interface
+  moveit_visual_tools
   roscpp
   rospy
   std_msgs
@@ -211,3 +213,5 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+add_executable(get_joint_solution src/get_joint_solution.cpp) 
+target_link_libraries(get_joint_solution ${catkin_LIBRARIES})

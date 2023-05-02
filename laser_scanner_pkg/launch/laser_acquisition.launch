@@ -1,0 +1,4 @@
+<launch>
+  <node name="signal_transformer" pkg="laser_scanner_pkg" type="node_type" />
+  <node name="aggregate_laser_scans" pkg="laser_scanner_pkg" type="node_type" />
+</launch>

@@ -17,9 +17,9 @@
     <arg name="y" default="0"/>
     <arg name="z" default="0.0925"/>
 
-    <include file="$(find add_post_pro_config)/launch/move_group.launch">
+    <!-- <include file="$(find add_post_pro_config)/launch/move_group.launch">
       <arg name="publish_monitored_planning_scene" value="true" />
-    </include>
+    </include> -->
 
     <group if="$(eval processing_phase == 'depowdering')"> 
       <node name="spawn_depowdering_surface" pkg="add_post_pro_simulation" type="spawn_depowdering_surface.py"/>

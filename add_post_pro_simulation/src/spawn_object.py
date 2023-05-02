@@ -132,7 +132,7 @@ def app_spawn_model(req):
         resp = attach_link(model_1, link_1, model_2, link_2)
         print("Links attached!")
     except rospy.ServiceException as e:
-        rospy.logwarn(f"Service call failed: {e} with response code {resp}")
+        rospy.logwarn("Service call failed: {} with response code {}".format(e,resp))
     return APPSpawnModelResponse(True)
 
 

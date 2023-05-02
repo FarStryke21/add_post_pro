@@ -62,6 +62,10 @@ add_executable(test_node src/test_node.cpp)
 add_dependencies(test_node ${pcl_sensor_data_EXPORTED_TARGETS} $($(PROJECT_NAME)_EXPORTED_TARGETS) $(catkin_EXPORTED_TARGETS))
 target_link_libraries(test_node ${catkin_LIBRARIES})
 
+add_executable(laser_playground src/laser_playground.cpp)
+add_dependencies(laser_playground ${pcl_sensor_data_EXPORTED_TARGETS} $($(PROJECT_NAME)_EXPORTED_TARGETS) $(catkin_EXPORTED_TARGETS))
+target_link_libraries(laser_playground ${catkin_LIBRARIES})
+
 add_executable(laser_processor src/laser_processor.cpp)
 add_dependencies(laser_processor ${pcl_sensor_data_EXPORTED_TARGETS} $($(PROJECT_NAME)_EXPORTED_TARGETS) $(catkin_EXPORTED_TARGETS))
 target_link_libraries(laser_processor ${catkin_LIBRARIES})

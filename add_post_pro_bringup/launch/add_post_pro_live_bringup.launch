@@ -1,7 +1,7 @@
 <!-- This launch file will create nodes responsible for live robot manipulation -->
 <launch>
 
-    <arg name="ip_address" default="169.254.221.17" />
+    <arg name="ip_address" default="128.2.56.10" />
 
     <!-- If you want to change send and recieve format of denso_robot_control, -->
     <!-- you can specify the send_format and recv_format parameters -->
@@ -24,7 +24,7 @@
     </include> -->
 
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
-        <param name="use_gui" value="false"/>
+        <param name="use_gui" value="true"/>
         <param name="publish_frequency" type="double" value="125.0" />
         <rosparam param="source_list" subst_value = "true">[/$(arg robot_name)/joint_states]</rosparam>
     </node>
@@ -73,5 +73,17 @@
     <include file="$(find add_post_pro_robot_vs050_config)/launch/move_group.launch" if="$(eval denso_robot == 'vs050')">
         <arg name="publish_monitored_planning_scene" value="true" />
     </include>
+
+
+    <!-- Run Rviz and load the default config to see the state of the move_group node -->
+    <include file="$(find add_post_pro_robot_b120_config)/launch/moveit_rviz.launch">
+        <arg name="rviz_config" value="$(find add_post_pro_robot_b120_config)/launch/moveit.rviz"/>
+        <!-- <arg name="debug" value="$(arg debug)"/> -->
+    </include> 
+
+<!-- Scan control launch-->
+    <include file="$(find micro_epsilon_scancontrol_driver)/launch/load_driver.launch"/>
+    <node name="transform_signal" pkg="laser_scanner_pkg" type="signal_transformer" />
+    <node name="concatenate_pointcloud" pkg="laser_scanner_pkg" type="aggregate_laser_scans" respawn="true"/>
 
 </launch>
