@@ -65,7 +65,8 @@ int main(int argc, char** argv)
   ros::NodeHandle nh;
 
   // Subscribe to the input point cloud topic
-  ros::Subscriber sub = nh.subscribe<sensor_msgs::PointCloud2>("/transform_cloud", 1, cloudCallback);
+  ros::Subscriber sub = nh.subscribe<sensor_msgs::PointCloud2>("/transformed_cloud", 1, cloudCallback);
+  //ros::Subscriber sub = nh.subscribe<sensor_msgs::PointCloud2>("/scancontrol_pointcloud", 1, cloudCallback);
   // ros::Subscriber sub = nh.subscribe<sensor_msgs::PointCloud2>("/scancontrol_pointcloud", 1, cloudCallback);
   ros::Subscriber joint_sub = nh.subscribe<sensor_msgs::JointState>("/joint_states", 1, checkMoving);
 

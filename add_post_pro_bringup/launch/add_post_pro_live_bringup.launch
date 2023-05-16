@@ -83,7 +83,7 @@
 
 <!-- Scan control launch-->
     <include file="$(find micro_epsilon_scancontrol_driver)/launch/load_driver.launch"/>
-    <node name="transform_signal" pkg="laser_scanner_pkg" type="signal_transformer" />
+    <node name="transform_signal" pkg="laser_scanner_pkg" type="signal_transformer" respawn="true"/>
     <node name="concatenate_pointcloud" pkg="laser_scanner_pkg" type="aggregate_laser_scans" respawn="true"/>
 
 </launch>

@@ -18,6 +18,7 @@ int main(int argc, char** argv)
   tf2_ros::TransformListener tfListener(tfBuffer);
   
   std::string laser_frame = "true_laser"; 
+  //std::string laser_frame = "scancontrol2900-50_laser"; 
   std::string target_frame = "world"; 
 
 

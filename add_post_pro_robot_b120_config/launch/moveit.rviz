@@ -9,6 +9,7 @@ Panels:
         - /MotionPlanning1/Scene Robot1
         - /MotionPlanning1/Planning Request1
         - /MotionPlanning1/Planned Path1
+        - /PointCloud21
         - /TF1
         - /TF1/Frames1
       Splitter Ratio: 0.7425600290298462
@@ -343,7 +344,7 @@ Visualization Manager:
       Size (Pixels): 3
       Size (m): 0.0010000000474974513
       Style: Flat Squares
-      Topic: /scancontrol_pointcloud
+      Topic: /output_cloud_topic
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
